@@ -32,34 +32,29 @@ $conn->close();
 <body>
     <div>
         <!-- -------NAVBAR-------- -->
-  <?php include 'navbar.php';?>
-  <!-- -------------------- -->
+        <?php include 'navbar.php';?>
+        <!-- -------------------- -->
     </div>
 
     <div class="container container-body" style="margin-top: 300px;" >
-        <div>
-            <form name="myForm" id="myForm" onSubmit="return validateForm()" action="import-excel.php" method="post" enctype="multipart/form-data">
-                <input type="file" id="databuku" name="databuku" />
-                <input type="submit" name="submit" value="Import" /><br/>
-                <label><input type="checkbox" name="drop" value="1" /> <u>Kosongkan tabel sql terlebih dahulu.</u> </label>
-            </form>
-        </div>
+        <form action="code-generate.php" method="get" target="_blank">
+            <select name="dusParam">
+                <?php foreach ($arr as $obj){
+                    echo '<option value="'. $obj['dus']. '">'.$obj['dus'].'</option>';
+                }
+                ?>  
+                </select>
+                <br><br>
+            <input type="submit" >
+        </form>
+        
     </div>
 
     <br>
     <br>
     <br>
 
-    <form action="code-generate.php" method="get">
-        <select name="dusParam">
-        <?php foreach ($arr as $obj){
-            echo '<option value="'. $obj['dus']. '">'.$obj['dus'].'</option>';
-        }
-        ?>  
-        </select>
-        <br><br>
-        <input type="submit">
-    </form>
+    
 
     <footer >
         <div class="container isi-footer">

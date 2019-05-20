@@ -21,8 +21,8 @@ if(isset($_POST['submit'])){
     $drop = isset( $_POST["drop"] ) ? $_POST["drop"] : 0 ;
     if($drop == 1){
 //             kosongkan tabel pegawai
-             $truncate ="TRUNCATE TABLE NILAI_MHS";
-             mysql_query($truncate);
+             $truncate ="TRUNCATE TABLE buku";
+             mysqli_query($conn, $truncate);
     };
 
 //    import data excel mulai baris ke-2 (karena tabel xls ada header pada baris 1)
@@ -39,12 +39,12 @@ if(isset($_POST['submit'])){
 
 //      setelah data dibaca, masukkan ke tabel pegawai sql
       $sql = "INSERT into buku (judul_buku,kategori,penulis,penerbit,tahun_terbit,jumlah, nama_dus)values
-      ('$judul','$kategori','$penulis','$penerbit','$tahun', '$jumlah', '$namaDus')";
+      ('"'$judul'"','$kategori','$penulis','$penerbit','$tahun', '$jumlah', '$namaDus')";
       if ($conn->query($sql) === TRUE) {
-          echo "Berhasil import";
+          echo "Berhasil import <br>";
       } else {
           echo "Error: " . $sql . "<br>" . $conn->error;
-      }
+      }  
     }
 
 //    hapus file xls yang udah dibaca
