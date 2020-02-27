@@ -1,5 +1,5 @@
 <?php
-//header("Location: https://data-keuangan.000webhostapp.com/data-keuangan/hutang.php"); /* Redirect browser */
+header("Location: kategori-buku.php"); /* Redirect browser */
 include('connection.php');
 
 $kategori = $_POST['kategori'];
@@ -16,6 +16,8 @@ if ($conn->query($sql) === TRUE) {
 }
 
 $conn->close();
+
+
 
 
 exit();

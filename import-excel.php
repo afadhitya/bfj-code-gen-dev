@@ -39,7 +39,7 @@ if(isset($_POST['submit'])){
 
 //      setelah data dibaca, masukkan ke tabel pegawai sql
       $sql = "INSERT into buku (judul_buku,kategori,penulis,penerbit,tahun_terbit,jumlah, nama_dus)values
-      ('"'$judul'"','$kategori','$penulis','$penerbit','$tahun', '$jumlah', '$namaDus')";
+      ('$judul','$kategori','$penulis','$penerbit','$tahun', '$jumlah', '$namaDus')";
       if ($conn->query($sql) === TRUE) {
           echo "Berhasil import <br>";
       } else {
