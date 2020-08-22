@@ -28,13 +28,10 @@ if ($result2->num_rows > 0) {
 
 <head>
   <meta charset="utf-8">
-
-  <title>Data Buku</title>
-  <meta name="description" content="The HTML5 Herald">
-  <meta name="author" content="SitePoint">
-
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+	<?php include 'head-common.php';?>
 </head>
 
 <body>
