@@ -44,29 +44,48 @@ if ($result2->num_rows > 0) {
 			<!-- -------------------- -->
 	</div>
 
-	<div class="container">
-	  <div class="col-sm-12">
-		Nama Dus
-		<form action="data-buku.php" method="get">
-			<select name="dusParam">
-				<?php foreach ($arr as $obj) {
+	<div class="container" style="margin-top:1rem;">
+	  <div class="col-sm-12" >
+		<h6>Nama Dus</h6>
+		<div style="margin-bottom:1rem;">
+			<form action="data-buku.php" method="get">
+				<div class="form-row align-items-center">
+					<div class="col-5 my-1">
+						<select class="custom-select" name="dusParam">
+							<?php foreach ($arr as $obj) {
 
-					$selected = "";
+								$selected = "";
 
-					if ($dusParam == $obj['dus']) {
-						$selected = 'selected="selected"';
-					} 
+								if ($dusParam == $obj['dus']) {
+									$selected = 'selected="selected"';
+								} 
 
-					echo '<option value="' . $obj['dus'] . '"' . $selected .'>' . $obj['dus'] . '</option>';
-				}
-				?>  
-			</select>
-			<input type="submit"> 
-		</form>
+								echo '<option value="' . $obj['dus'] . '"' . $selected .'>' . $obj['dus'] . '</option>';
+							}
+							?>  
+						</select>
+					</div>
+					<div class="col-auto my-1">
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+
+					<?php 
+					if (isset($result->num_rows) > 0) {
+					?>
+					<div class="col-auto my-1">
+						<a class="btn btn-danger" href="delete-dus.php?dusParam=<?php echo $dusParam ?>" role="button">Hapus Data Dus Buku Ini</a>
+					</div>
+					<?php 
+					}
+					?>
+				</div>
+			</form>
+		</div>
+	
 		
 	  	<!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Box"> -->
 		<?php
-			if ($dusParam != null) {
+			if (isset($result->num_rows) > 0) {
 		?>
 	  <table class="table table-bordered table-striped" border="1" id="tableDataBuku">
 	    <thead>
@@ -107,4 +126,9 @@ if ($result2->num_rows > 0) {
 		?>
 	</div>
 </body>
+<?php
+if (isset($result->num_rows) > 0) {
+	include 'footer.php';
+}
+?>
 </html>

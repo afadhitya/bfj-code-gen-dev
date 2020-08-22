@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
-<body></body>
+<body>
 
   <?php
     include('connection.php');
@@ -19,7 +19,7 @@
   <?php include 'navbar.php';?>
   <!-- -------------------- -->
 
-<div class="container">
+<div class="container" style="margin-top:2rem;">
 <div class="row">
   <div class="col-8">
   <table class="table table-bordered table-striped" border="1">
@@ -28,7 +28,7 @@
         <th>Kategori</th>
         <th>Inisial</th>
         <th>Kode</th>
-        <th>Action</th>
+        <!-- <th>Action</th> -->
       </tr>
     </thead>
     <tbody>
@@ -37,8 +37,8 @@
           <td> <?php echo $row["kategori"]; ?></td>
           <td> <?php echo $row["inisial_kode_buku"];?></td>
           <td> <?php echo $row["nomor_kode_buku"];?></td>
-          <td> <a href="/data-keuangan/delete-hutang.php?idHutang=<?php echo $row["id"]?>">Delete</a>
-                <a href="/data-keuangan/edit-hutang.php?idHutang=<?php echo $row["id"]?>">Edit</a></td>
+          <!-- <td> <a href="/data-keuangan/delete-hutang.php?idHutang=<?php echo $row["id"]?>">Delete</a>
+                <a href="/data-keuangan/edit-hutang.php?idHutang=<?php echo $row["id"]?>">Edit</a></td> -->
         </tr>
       <?php } ?>
     </tbody>
@@ -53,27 +53,28 @@
   ?>
 
   <div class="col-4">
+  <h5>Input Kategori Buku</h><br><br>
   <form action="insert-kategori.php" method="post">
     <div class="form-group">
     <label for="kategori">Kategori: </label>
     <input type="text" class="form-control" id="kategori" name="kategori">
   </div>
   <div class="form-group">
-  <label for="inisial_kode_buku">Inisial Kategori: </label>
-  <input type="text" class="form-control" id="inisial_kode_buku" name="inisial_kode_buku" >
+    <label for="inisial_kode_buku">Inisial Kategori: </label>
+    <input type="text" class="form-control" id="inisial_kode_buku" name="inisial_kode_buku" >
   </div>
 
   <div class="form-group">
-  <label for="nomor_kode_buku">Nomor Kode Kategori: </label>
-  <input type="text" class="form-control" id="nomor_kode_buku" name="nomor_kode_buku" >
+    <label for="nomor_kode_buku">Nomor Kode Kategori: </label>
+    <input type="text" class="form-control" id="nomor_kode_buku" name="nomor_kode_buku" >
   </div>
-  <input type="submit" value="Submit" class="btn btn-default">
+  <button type="submit" class="btn btn-primary">Submit</button>
   </form>
-
-  <h4>Click submit untuk add kategori baru ke database</h4>
 </div>
 </div>
 </div>
 
 </body>
+
+<?php include 'footer.php';?>
 </html>
