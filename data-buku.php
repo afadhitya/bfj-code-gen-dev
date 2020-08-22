@@ -5,9 +5,25 @@
 <?php
 include "connection.php";
 
-$sql = "SELECT * FROM buku ORDER BY nama_dus ASC, judul_buku ASC";
-$result = $conn->query($sql);
+$dusParam = isset($_GET['dusParam']) ? $_GET['dusParam'] : '';
 
+if ($dusParam != null) {
+	$sql = "SELECT * FROM buku WHERE nama_dus = '$dusParam' ORDER BY nama_dus ASC, judul_buku ASC";
+	$result = $conn->query($sql);
+}
+
+$sql = "SELECT DISTINCT nama_dus FROM buku";
+$result2 = $conn->query($sql);
+
+$i = 0;
+if ($result2->num_rows > 0) {
+	while ($row = $result2->fetch_assoc()) {
+		$arr[$i]['dus'] = $row["nama_dus"];
+		$i++;
+	}
+} else {
+	echo "0 results";
+}
 ?>
 
 <head>
@@ -32,8 +48,27 @@ $result = $conn->query($sql);
 
 	<div class="container">
 	  <div class="col-sm-12">
-	  	<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Box">
+		Box
+		<form action="data-buku.php" method="get">
+			<select name="dusParam">
+				<?php foreach ($arr as $obj){
 
+					$selected = "";
+
+					if ($dusParam == $obj['dus']) {
+						$selected = 'selected="selected"';
+					} 
+					echo '<option value="'. $obj['dus']. '"' .$selected.'>'.$obj['dus'].'</option>';
+				}
+				?>  
+			</select>
+			<input type="submit"> 
+		</form>
+		
+	  	<!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Box"> -->
+		<?php
+			if ($dusParam != null) {
+		?>
 	  <table class="table table-bordered table-striped" border="1" id="tableDataBuku">
 	    <thead>
 	      <tr>
@@ -68,6 +103,9 @@ $result = $conn->query($sql);
 		?>
 		</tbody>
 	  </table>
+		<?php
+			}
+		?>
 	</div>
   <script type="text/javascript">
   	

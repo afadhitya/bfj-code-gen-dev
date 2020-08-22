@@ -32,11 +32,10 @@ $conn->close();
 <body>
     <div>
         <!-- -------NAVBAR-------- -->
-  <?php include 'navbar.php';?>
-  <!-- -------------------- -->
+        <?php include 'navbar.php';?>
+        <!-- -------------------- -->
     </div>
-
-    <div class="container container-body" style="margin-top: 300px;" >
+    <div class="container container-body" style="margin-top: 180px;" >
         <div>
             <form name="myForm" id="myForm" onSubmit="return validateForm()" action="import-excel.php" method="post" enctype="multipart/form-data">
                 <input type="file" id="databuku" name="databuku" />
@@ -44,28 +43,40 @@ $conn->close();
                 <label><input type="checkbox" name="drop" value="1" /> <u>Kosongkan tabel sql terlebih dahulu.</u> </label>
             </form>
         </div>
+
+        <br>
+        <br>
+        <br>
+
+        Generate Kode Buku
+
+        <br><br>
+
+        <form action="code-generate.php" method="get" target="_blank">
+            <select name="dusParam">
+            <?php foreach ($arr as $obj){
+                echo '<option value="'. $obj['dus']. '">'.$obj['dus'].'</option>';
+            }
+            ?>  
+            </select>
+            <br><br>
+            <input type="submit">
+        </form>
     </div>
 
     <br>
     <br>
     <br>
+    <br>
+    <br>
+    <br>
 
-    <form action="code-generate.php" method="get">
-        <select name="dusParam">
-        <?php foreach ($arr as $obj){
-            echo '<option value="'. $obj['dus']. '">'.$obj['dus'].'</option>';
-        }
-        ?>  
-        </select>
-        <br><br>
-        <input type="submit">
-    </form>
-
-    <footer >
+    <?php include 'footer.php';?>
+    <!-- <footer >
         <div class="container isi-footer">
-            <h5 class="text-center font-bold text-footer-custom">Achmad Fadhitya &copy; 2018</h>
+            <h5 class="text-center font-bold text-footer-custom">Made with 💖 by Achmad Fadhitya for TIM PKM POLBAN &copy; <?php echo date("Y")?>  </h>
         </div>
-    </footer>
+    </footer> -->
 
   </body>
 
