@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body></body>
 
@@ -20,7 +20,8 @@
   <!-- -------------------- -->
 
 <div class="container">
-  <div class="col-sm-8">
+<div class="row">
+  <div class="col-8">
   <table class="table table-bordered table-striped" border="1">
     <thead>
       <tr>
@@ -51,7 +52,7 @@
     $conn->close();
   ?>
 
-  <div class="col-sm-4">
+  <div class="col-4">
   <form action="insert-kategori.php" method="post">
     <div class="form-group">
     <label for="kategori">Kategori: </label>
@@ -70,6 +71,7 @@
   </form>
 
   <h4>Click submit untuk add kategori baru ke database</h4>
+</div>
 </div>
 </div>
 

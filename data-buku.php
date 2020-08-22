@@ -33,32 +33,31 @@ if ($result2->num_rows > 0) {
   <meta name="description" content="The HTML5 Herald">
   <meta name="author" content="SitePoint">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="stylesheet" href="css/styles.css?v=1.0">
-
-
 </head>
 
 <body>
 	<div>
-        <!-- -------NAVBAR-------- -->
-        <?php include 'navbar.php';?>
-        <!-- -------------------- -->
-    </div>
+			<!-- -------NAVBAR-------- -->
+			<?php include 'navbar.php';?>
+			<!-- -------------------- -->
+	</div>
 
 	<div class="container">
 	  <div class="col-sm-12">
-		Box
+		Nama Dus
 		<form action="data-buku.php" method="get">
 			<select name="dusParam">
-				<?php foreach ($arr as $obj){
+				<?php foreach ($arr as $obj) {
 
 					$selected = "";
 
 					if ($dusParam == $obj['dus']) {
 						$selected = 'selected="selected"';
 					} 
-					echo '<option value="'. $obj['dus']. '"' .$selected.'>'.$obj['dus'].'</option>';
+
+					echo '<option value="' . $obj['dus'] . '"' . $selected .'>' . $obj['dus'] . '</option>';
 				}
 				?>  
 			</select>
@@ -107,30 +106,5 @@ if ($result2->num_rows > 0) {
 			}
 		?>
 	</div>
-  <script type="text/javascript">
-  	
-  	function myFunction() {
-	  // Declare variables 
-	  var input, filter, table, tr, td, i, txtValue;
-	  input = document.getElementById("myInput");
-	  filter = input.value.toUpperCase();
-	  table = document.getElementById("tableDataBuku");
-	  tr = table.getElementsByTagName("tr");
-
-	  // Loop through all table rows, and hide those who don't match the search query
-	  for (i = 0; i < tr.length; i++) {
-	    td = tr[i].getElementsByTagName("td")[6];
-	    if (td) {
-	      txtValue = td.textContent || td.innerText;
-	      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-	        tr[i].style.display = "";
-	      } else {
-	        tr[i].style.display = "none";
-	      }
-	    } 
-	  }
-	}
-
-  </script>
 </body>
 </html>

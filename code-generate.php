@@ -3,12 +3,11 @@
 include('connection.php');
 include('KodeBuku.php');
 
-
 $sql = "SELECT * FROM kode_buku";
 $result = $conn->query($sql);
 $kodeBukuArr = array();
 
-while($row = $result->fetch_assoc()) {
+while ($row = $result->fetch_assoc()) {
     $kodeBuku = new KodeBuku();
     $kodeBuku->kategori = $row['kategori'];
     $kodeBuku->nomorKodeBuku = $row['nomor_kode_buku'];
@@ -17,17 +16,14 @@ while($row = $result->fetch_assoc()) {
     array_push($kodeBukuArr, $kodeBuku);
 }
 
-//print_r($kodeBukuArr);
-
-
 $dusParam=$_GET['dusParam'];
 
 $sql = "SELECT * FROM buku WHERE nama_dus = '$dusParam' ORDER BY judul_buku ASC";
 $result = $conn->query($sql);
 
-$count=0;
-$arr=[];
-$i =0;
+$count = 0;
+$arr = [];
+$i = 0;
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
@@ -36,16 +32,15 @@ if ($result->num_rows > 0) {
         while ($countStok < $row["jumlah"]){
             $countKode = 0;
             foreach ($kodeBukuArr as $kodeBukuObj){
-                if (strtolower(str_replace(' ', '', $row["kategori"])) == strtolower(str_replace(' ','', $kodeBukuObj->kategori))){
+                if (strtolower(str_replace(' ', '', $row["kategori"])) == strtolower(str_replace(' ','', $kodeBukuObj->kategori))) {
                     $arr[$i]['kategori'] = $kodeBukuObj->inisialKodeBuku;
                     $arr[$i]['kode'] =  $kodeBukuObj->nomorKodeBuku;
                     break;
-                }
-                else {
+                } else {
                     $countKode++;
                 }
 
-                if (sizeof($kodeBukuArr) == $countKode){
+                if (sizeof($kodeBukuArr) == $countKode) {
                     echo "kategori ". $row['kategori'] ." tidak terdaftar <br>" ;
                 } 
             }  
@@ -63,7 +58,6 @@ if ($result->num_rows > 0) {
 $conn->close();
 ?>
 
-
 <style>
 table, th, td {
     border: 1px solid black;
@@ -71,42 +65,36 @@ table, th, td {
 </style>
 
 <?php
-$row=0;
-
+$row = 0;
 $totalBuku = (sizeof($arr));
-//;
-//
 
-while ($count < $totalBuku){
-    if($row%8== 0 && $row != 0) echo "<br><br><br><br><br><br><br>";
+while ($count < $totalBuku) {
+    if ( $row % 8 == 0 && $row != 0) echo "<br><br><br><br><br><br><br>";
 ?>
     <table width="200" style="width:200mm;height:33mm; border-collapse: collapse;" >
-    <tr>
-        <?php 
-        for($i=0;$i<5;$i++){
-            
-                ?>
-                <td align="center" width="148px">
-                    <?php
-                       if($count < $totalBuku){
-                         echo "<b>TIM PKM<br>POLBAN</b>" . "<br>";
-                        echo $arr[$count]['kategori'] . "<br>";
-                        echo $arr[$count]['kode'] . "<br>";
-                        echo $arr[$count]['penulis'] . "<br>";
-                        echo $arr[$count]['judul_buku'] . "<br>";
-                       }
-                        $count++;
+        <tr>
+            <?php 
+            for ($i = 0; $i < 5; $i++) {
                     ?>
-                </td>
-        <?php 
-        }
+                    <td align="center" width="148px">
+                        <?php
+                        if($count < $totalBuku){
+                            echo "<b>TIM PKM<br>POLBAN</b>" . "<br>";
+                            echo $arr[$count]['kategori'] . "<br>";
+                            echo $arr[$count]['kode'] . "<br>";
+                            echo $arr[$count]['penulis'] . "<br>";
+                            echo $arr[$count]['judul_buku'] . "<br>";
+                        }
+                            $count++;
+                        ?>
+                    </td>
+            <?php 
+            }
 
-        ?>
-
-    </tr>
-    
+            ?>
+        </tr>
     </table>
-
 <?php 
-$row++;
-} ?>
+    $row++;
+} 
+?>
