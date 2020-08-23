@@ -1,8 +1,8 @@
 <?php
+// header("Location: data-buku.php?dusParam=$namaDus");
 
 include "connection.php";
 require "excel_reader.php";
-
 //jika tombol import ditekan
 if(isset($_POST['submit'])){
 
@@ -23,7 +23,7 @@ if(isset($_POST['submit'])){
     // kosongkan tabel pegawai
     $truncate ="TRUNCATE TABLE buku";
     mysqli_query($conn, $truncate);
-  };
+  }
 
   // import data excel mulai baris ke-2 (karena tabel xls ada header pada baris 1)
   for ($i=2; $i<=$baris; $i++) {
@@ -67,6 +67,7 @@ if(isset($_POST['submit'])){
 
   // hapus file xls yang udah dibaca
   unlink($_FILES['databuku']['name']);
+  header("Location: data-buku.php?dusParam=$namaDus");
 }
 
 ?>

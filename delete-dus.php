@@ -1,6 +1,6 @@
 <?php
 
-// header("Location: data-buku.php"); /* Redirect browser */
+header("Location: data-buku.php"); /* Redirect browser */
 include('connection.php');
 
 $dus = $_GET['dusParam'];

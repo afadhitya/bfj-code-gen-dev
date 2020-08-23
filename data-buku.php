@@ -69,9 +69,40 @@ if ($result2->num_rows > 0) {
 					<?php 
 					if (isset($result->num_rows) > 0) {
 					?>
-					<div class="col-auto my-1">
-						<a class="btn btn-danger" href="delete-dus.php?dusParam=<?php echo $dusParam ?>" role="button">Hapus Data Dus Buku Ini</a>
+
+					<!-- Button trigger modal -->
+					<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+						Hapus Data Dus Buku Ini
+					</button>
+
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Konfirmasi Penghapusan</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									Apakah anda yakin akan menghapus semua data buku di tabel dus ini?
+									<br><br>
+
+									<div class="alert alert-danger" role="alert">
+										Data buku akan dihapus secara permanen, apabila 
+										membutuhkan data tesebut lagi anda dapat melakukan import ulang data buku dari excel data buku yang anda miliki.
+									</div>
+
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									<a class="btn btn-danger" href="delete-dus.php?dusParam=<?php echo $dusParam ?>" role="button">Ya, Saya Yakin</a>
+								</div>
+							</div>
+						</div>
 					</div>
+
 					<?php 
 					}
 					?>
@@ -122,6 +153,10 @@ if ($result2->num_rows > 0) {
 			}
 		?>
 	</div>
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 <?php
 if (isset($result->num_rows) > 0) {
