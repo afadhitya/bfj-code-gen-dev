@@ -43,9 +43,18 @@ $conn->close();
     <div class="container container-body" style="margin-top: 7rem; margin-bottom: 7rem;" >
     <div class="row">
         <div class="col-6">
-            <div class="card bg-light mb-3 text-center" style="width: 30rem; height: 20rem; padding-top: 3rem;">
+            <div class="card bg-light mb-3 text-center" style="width: 30rem; height: 20rem; padding-top: 0.1rem;">
                 <div class="card-body">
                     <h5 class="card-title">Import Data Buku</h5>
+                     
+                    <p class="card-text">
+                        <span class="badge badge-info">Info</span>
+                        Gunakan card ini untuk melakukan import excel data buku ke server sebelum melakukan generate kode buku
+                        <br><br>
+                        <span class="badge badge-warning">Warning</span>
+                        File yang dapat diimport hanya excel bertipe xls (bukan xlxs) 
+                    </p>
+
                     <div>
                         <form name="myForm" id="myForm" onSubmit="return validateForm()" action="import-excel.php" method="post" enctype="multipart/form-data">
                             
@@ -67,9 +76,18 @@ $conn->close();
         </div>
     
         <div class="col-6">
-            <div class="card bg-light mb-3 text-center" style="width: 30rem; height: 20rem; padding-top: 3rem;">
+            <div class="card bg-light mb-3 text-center" style="width: 30rem; height: 20rem; padding-top: 0.1rem;">
                 <div class="card-body">
                     <h5 class="card-title">Generate Kode Buku</h5>
+
+                    <p class="card-text">
+                        <span class="badge badge-info">Info</span>
+                        Gunakan card ini untuk melakukan generate kode buku berdasarkan nama dus tertentu
+                        <br><br>
+                        <span class="badge badge-warning">Warning</span>
+                        Apablia data belum ada, import terlebih dahulu datanya, dan cek apakah sudah berhasil atau belum!
+                    </p>
+
                     <form action="code-generate.php" method="get" target="_blank">
                         <select class="custom-select" name="dusParam">
                         <?php foreach ($arr as $obj){
@@ -80,7 +98,7 @@ $conn->close();
 
                         <br><br>
 
-                        <input class="btn btn-primary" type="submit">
+                        <input class="btn btn-primary" type="submit" value="Generate">
                     </form>
                 
                 </div>
