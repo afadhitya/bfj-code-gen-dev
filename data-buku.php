@@ -4,7 +4,7 @@
 
 <?php
 include "connection.php";
-
+$idPage = 2;
 $dusParam = isset($_GET['dusParam']) ? $_GET['dusParam'] : '';
 
 if ($dusParam != null) {

@@ -3,6 +3,8 @@
 <?php
 include "connection.php";
 
+$idPage = 1;
+
 $sql = "SELECT distinct nama_dus FROM buku";
 $result = $conn->query($sql);
 

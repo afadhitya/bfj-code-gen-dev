@@ -9,6 +9,8 @@
   <?php
     include('connection.php');
 
+    $idPage = 3;
+
     $sql = "SELECT * FROM kode_buku ORDER BY nomor_kode_buku ASC";
     $result = $conn->query($sql);
     $total = 0;

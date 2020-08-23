@@ -5,14 +5,17 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item <?php if ((isset($idPage) ? $idPage : null) == 1) { echo "active";}?>">
+        <a class="nav-link" href="index.php">Home <?php if (isset($idPage) == 1) { echo "<span class=\"sr-only\">(current)</span>"; }?></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="data-buku.php">Tabel Data Buku</a>
+      <li class="nav-item <?php if ((isset($idPage) ? $idPage : null) == 2) { echo "active";}?>">
+        <a class="nav-link" href="data-buku.php">Tabel Data Buku <?php if (isset($idPage) == 2) { echo "<span class=\"sr-only\">(current)</span>"; }?></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="kategori-buku.php">Tabel Kategori Buku</a>
+      <li class="nav-item <?php if ((isset($idPage) ? $idPage : null) == 3) { echo "active";}?>"">
+        <a class="nav-link" href="kategori-buku.php">Tabel Kategori Buku <?php if (isset($idPage) == 3) { echo "<span class=\"sr-only\">(current)</span>"; }?></a>
+      </li>
+      <li class="nav-item <?php if ((isset($idPage) ? $idPage : null) == 4) { echo "active";}?>"">
+        <a class="nav-link" href="status-import.php">Status Import <?php if (isset($idPage) == 4) { echo "<span class=\"sr-only\">(current)</span>"; }?></a>
       </li>
     </ul>
   </div>
