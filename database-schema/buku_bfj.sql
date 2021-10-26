@@ -39,6 +39,13 @@ CREATE TABLE `buku` (
   `nama_dus` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
+CREATE TABLE `import_history` (
+  `tanggal` DATETIME NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `remark` varchar(255) NOT NULL,
+  `nama_dus` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 --
 -- Dumping data untuk tabel `buku`
 --
