@@ -12,7 +12,9 @@
     $idPage = 3;
 
     $sql = "SELECT * FROM kode_buku ORDER BY nomor_kode_buku ASC";
-    $result = $conn->query($sql);
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->get_result();
     $total = 0;
 
     if ($result->num_rows > 0) {

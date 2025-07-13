@@ -4,7 +4,9 @@ include('connection.php');
 include('KodeBuku.php');
 
 $sql = "SELECT * FROM kode_buku";
-$result = $conn->query($sql);
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$result = $stmt->get_result();
 $kodeBukuArr = array();
 
 while ($row = $result->fetch_assoc()) {
@@ -15,11 +17,15 @@ while ($row = $result->fetch_assoc()) {
 
   array_push($kodeBukuArr, $kodeBuku);
 }
+$stmt->close();
 
 $dusParam=$_GET['dusParam'];
 
-$sql = "SELECT * FROM buku WHERE nama_dus = '$dusParam' ORDER BY judul_buku ASC";
-$result = $conn->query($sql);
+$sql = "SELECT * FROM buku WHERE nama_dus = ? ORDER BY judul_buku ASC";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $dusParam);
+$stmt->execute();
+$result = $stmt->get_result();
 
 $count = 0;
 $arr = [];

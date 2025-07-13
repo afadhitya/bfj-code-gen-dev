@@ -4,7 +4,9 @@ $idPage = 4;
 include "connection.php";
 
 $sql = "SELECT * FROM import_history ORDER BY tanggal DESC";
-$result = $conn->query($sql);
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$result = $stmt->get_result();
 
 $tableRow = "";
 

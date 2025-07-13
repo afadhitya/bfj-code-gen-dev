@@ -7,13 +7,16 @@ $inisialKodeBuku = $_POST['inisial_kode_buku'];
 $nomorKodeBuku = $_POST['nomor_kode_buku'];
 
 $sql = "INSERT INTO kode_buku (kategori, inisial_kode_buku, nomor_kode_buku)
-VALUES ('$kategori', '$inisialKodeBuku', '$nomorKodeBuku')";
+VALUES (?, ?, ?)";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("sss", $kategori, $inisialKodeBuku, $nomorKodeBuku);
 
-if ($conn->query($sql) === TRUE) {
+if ($stmt->execute() === TRUE) {
     echo "New record created successfully";
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "Error: " . $stmt->error;
 }
+$stmt->close();
 
 $conn->close();
 exit();

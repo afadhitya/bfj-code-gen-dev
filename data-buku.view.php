@@ -2,35 +2,6 @@
 
 <html lang="en">
 
-<?php
-include "connection.php";
-$idPage = 2;
-$dusParam = isset($_GET['dusParam']) ? $_GET['dusParam'] : '';
-
-if ($dusParam != null) {
-	$sql = "SELECT * FROM buku WHERE nama_dus = ? ORDER BY nama_dus ASC, judul_buku ASC";
-	$stmt = $conn->prepare($sql);
-	$stmt->bind_param("s", $dusParam);
-	$stmt->execute();
-	$result = $stmt->get_result();
-}
-
-$sql = "SELECT DISTINCT nama_dus FROM buku";
-$stmt2 = $conn->prepare($sql);
-$stmt2->execute();
-$result2 = $stmt2->get_result();
-
-$i = 0;
-if ($result2->num_rows > 0) {
-	while ($row = $result2->fetch_assoc()) {
-		$arr[$i]['dus'] = $row["nama_dus"];
-		$i++;
-	}
-} else {
-	echo "0 results";
-}
-?>
-
 <head>
   <meta charset="utf-8">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -60,18 +31,18 @@ if ($result2->num_rows > 0) {
 
 								if ($dusParam == $obj['dus']) {
 									$selected = 'selected="selected"';
-								} 
+								}
 
 								echo '<option value="' . $obj['dus'] . '"' . $selected .'>' . $obj['dus'] . '</option>';
 							}
-							?>  
+							?>
 						</select>
 					</div>
 					<div class="col-auto my-1">
 						<button type="submit" class="btn btn-primary">Submit</button>
 					</div>
 
-					<?php 
+					<?php
 					if (isset($result->num_rows) > 0) {
 					?>
 
@@ -95,7 +66,7 @@ if ($result2->num_rows > 0) {
 									<br><br>
 
 									<div class="alert alert-danger" role="alert">
-										Data buku akan dihapus secara permanen, apabila 
+										Data buku akan dihapus secara permanen, apabila
 										membutuhkan data tesebut lagi anda dapat melakukan import ulang data buku dari excel data buku yang anda miliki.
 									</div>
 
@@ -108,15 +79,15 @@ if ($result2->num_rows > 0) {
 						</div>
 					</div>
 
-					<?php 
+					<?php
 					}
 					?>
 				</div>
 			</form>
 		</div>
-	
-		
-	  	<!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Box"> -->
+
+
+		<!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Box"> -->
 		<?php
 			if (isset($result->num_rows) > 0) {
 		?>
@@ -137,7 +108,7 @@ if ($result2->num_rows > 0) {
 			if ($result->num_rows > 0) {
 			    // output data of each row
 			    while($row = $result->fetch_assoc()) { ?>
-			    	<tr>
+				<tr>
 			          <td> <?php echo $row["judul_buku"]; ?></td>
 			          <td> <?php echo $row["kategori"]; ?></td>
 			          <td> <?php echo $row["penulis"]; ?></td>
@@ -146,7 +117,7 @@ if ($result2->num_rows > 0) {
 			          <td> <?php echo $row["jumlah"]; ?></td>
 			          <td> <?php echo $row["nama_dus"]; ?></td>
 			        </tr>
-			    <?php } 
+			    <?php }
 			} else {
 			    echo "0 results";
 			}
