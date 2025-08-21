@@ -8,6 +8,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -39,7 +40,7 @@ public class BukuService {
 
     public void importExcel(MultipartFile file) throws IOException {
         String namaDus = "";
-        try (Workbook workbook = new HSSFWorkbook(file.getInputStream())) {
+        try (Workbook workbook = new XSSFWorkbook(file.getInputStream())) {
             Sheet sheet = workbook.getSheetAt(0);
             for (int i = 1; i <= sheet.getLastRowNum(); i++) {
                 Row row = sheet.getRow(i);
@@ -57,9 +58,9 @@ public class BukuService {
 
                 bukuRepository.save(buku);
             }
-            saveImportHistory("Sukses", "", namaDus);
+//            saveImportHistory("Sukses", "", namaDus);
         } catch (Exception e) {
-            saveImportHistory("Gagal", e.getMessage(), namaDus);
+//            saveImportHistory("Gagal", e.getMessage(), namaDus);
             throw new IOException("Failed to import Excel file: " + e.getMessage(), e);
         }
     }
