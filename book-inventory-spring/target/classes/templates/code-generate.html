@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Generate Kode Buku</title>
+    <style>
+        @media print {
+            .page-break {
+                page-break-after: always;
+            }
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        .label-table {
+            width: 200mm;
+            height: 33mm;
+            table-layout: fixed;
+        }
+        .label-cell {
+            text-align: center;
+            width: 40mm; /* 200mm / 5 */
+            height: 33mm;
+            vertical-align: middle;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<th:block th:with="totalCodes=${#lists.size(generatedCodes)}">
+    <th:block th:if="${totalCodes > 0}">
+        <th:block th:with="codesPerPage=40"> <!-- 8 rows * 5 labels -->
+            <th:block th:each="pageNum : ${#numbers.sequence(0, (totalCodes - 1) / codesPerPage)}">
+                <div class="page-break">
+                    <th:block th:each="rowNum : ${#numbers.sequence(0, 7)}">
+                        <table class="label-table">
+                            <tr>
+                                <th:block th:each="colNum : ${#numbers.sequence(0, 4)}">
+                                    <td class="label-cell">
+                                        <th:block th:with="index = ${pageNum * codesPerPage + rowNum * 5 + colNum}">
+                                            <th:block th:if="${index < totalCodes}">
+                                                TIM PKM<br>POLBAN<br>
+                                                <span th:text="${generatedCodes[index].kategori}"></span><br>
+                                                <span th:text="${generatedCodes[index].kode}"></span><br>
+                                                <span th:text="${generatedCodes[index].penulis}"></span><br>
+                                                <span th:text="${generatedCodes[index].judulBuku}"></span>
+                                            </th:block>
+                                        </th:block>
+                                    </td>
+                                </th:block>
+                            </tr>
+                        </table>
+                    </th:block>
+                </div>
+            </th:block>
+        </th:block>
+    </th:block>
+</th:block>
+
+</body>
+</html>
