@@ -1,6 +1,7 @@
 com/example/bookinventoryspring/model/KodeBuku.class
 com/example/bookinventoryspring/repository/BukuRepository.class
 com/example/bookinventoryspring/model/Buku.class
+com/example/bookinventoryspring/dto/CodeGenerationResult.class
 com/example/bookinventoryspring/controller/CodeGenerationController.class
 com/example/bookinventoryspring/service/BukuService.class
 com/example/bookinventoryspring/BookInventorySpringApplication.class
