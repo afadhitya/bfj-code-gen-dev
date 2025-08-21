@@ -45,7 +45,7 @@ public class CodeGenerationService {
                 }
             }
             if (!categoryFound) {
-                errors.add("Kategori '" + buku.getKategori() + "' for book '" + buku.getJudulBuku() + "' not found.");
+                errors.add("Kategori '" + buku.getKategori() + "' for book '" + buku.getJudulBuku() + "' not found. Or Something wrong with the buku data");
             }
         }
         return new CodeGenerationResult(generatedCodes, errors);
