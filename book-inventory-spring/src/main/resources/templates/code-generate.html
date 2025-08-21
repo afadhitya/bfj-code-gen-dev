@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Generate Kode Buku</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         @media print {
             .page-break {
                 page-break-after: always;
+            }
+            .no-print {
+                display: none;
             }
         }
         table, th, td {
@@ -28,6 +32,15 @@
     </style>
 </head>
 <body>
+
+<div class="container no-print" th:if="${errors != null and not #lists.isEmpty(errors)}">
+    <div class="alert alert-danger mt-3">
+        <h5>Errors Found:</h5>
+        <ul>
+            <li th:each="error : ${errors}" th:text="${error}"></li>
+        </ul>
+    </div>
+</div>
 
 <th:block th:with="totalCodes=${#lists.size(generatedCodes)}">
     <th:block th:if="${totalCodes > 0}">
